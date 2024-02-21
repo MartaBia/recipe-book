@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request
-from backend.recipe import Recipe
-from backend.recipe_repository import RecipeRepository
+from recipe import Recipe
+from recipe_repository import RecipeRepository
 
 app = Flask(__name__)
 
@@ -22,9 +22,10 @@ def homepage():
 def add_recipe():
     if request.method == 'POST':
         # Create a new recipe from the form data
-        recipe = Recipe(name=request.form['name'],
-                        ingredients=request.form['ingredients'],
-                        process=request.form['ingredients'])
+        recipe = Recipe(
+            name=request.form['name'],
+            ingredients=request.form['ingredients'],
+            process=request.form['ingredients'])
 
         # Save the new recipe in the database
         recipe_repository.add(recipe)
